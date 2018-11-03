@@ -19,15 +19,16 @@ def retrieveAccount(username):
     sql = """
     select * from Account where username = '%s'
     """ % username
-    record = pd.read_sql(sql,engine)
+    record = pd.read_sql(sql, engine)
     returnValue = M.Account(record['FName'][0], record['LName'][0],
                             record['email'][0], record['phone'][0],
-                            record['UserName'][0], record['pword'][0]
+                            record['UserName'][0], record['pword'][0],
+                            record['oAuth'][0]
                             )
     return returnValue
 
 def insertAccount(Account):
     cursor = engine.raw_connection().cursor()
-    cursor.execute("InsertAccount ?,?,?,?,?,?", Account.toParams())
+    cursor.execute("InsertAccount ?,?,?,?,?,?,?", Account.toParams())
     cursor.commit()
 

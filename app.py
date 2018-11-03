@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    b = db.retrieveAccount('la96bikal')
+
     return render_template('home.html')
 
 @app.route('/signin', methods = ['POST', 'GET'])
@@ -20,6 +20,20 @@ def signin():
             return render_template('signin.html', Message="Invalid Username or Password. Try Again")
 
     return render_template('signin.html', form=Form)
+
+@app.route('/register', methods=['POST','GET'])
+def register():
+    form1 = request.form
+    print(form1)
+
+    if request.method == 'POST':
+        acc = M.Account(form1['Fname'], form1['Lname'], form1['email'], form1['phone'], form1['username'],
+                        form1['password'], form1['oAuth'])
+        db.insertAccount(acc)
+        return render_template('signin.html', form=form1)
+
+
+    return render_template('register.html', form=form1)
 
 
 
