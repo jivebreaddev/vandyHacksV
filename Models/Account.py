@@ -10,3 +10,4 @@ class Account:
     def toParams(self):
         params = [self.Fname, self.Lname, self.email, self.phone, self.username, self.password]
         return params
+
