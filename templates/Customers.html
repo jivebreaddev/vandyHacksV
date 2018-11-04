@@ -55,19 +55,18 @@
           </form>
         </div>
       </nav>
-
+  </header>
     <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron" back>
         <div class="container">
-
-          <div class="table-responsive">
-            <table class="table table-hover table-dark">
+        <form method = 'POST' class="form-signin">
+            <table id="table1" class="table table-hover">
   <thead>
     <tr>
-      <th scope="col"></th>
       <th scope="col">#</th>
+      <th scope="col"></th>
       <th scope="col">Name</th>
       <th scope="col">E-mail</th>
     </tr>
@@ -76,12 +75,16 @@
    {% for i in cust %}
   <tr>
       <td>{{ loop.index }}</td>
+      <td><input type="checkbox" name="checked"></td>
       <td>{{ i.name }}</td>
       <td>{{ i.email }}</td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
+          <button class="btn btn-primary btn-lg"  onclick="extract_emails()"> Send Emails </button>
+{#        <a href="{{ url_for('pricing', my_var = acc.username) }}">Pricing</a>#}
+        </form>
         </div>
         </div>
       </div>
@@ -90,9 +93,25 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    </main>
+
+  </body>
+</html>
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="http://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
     <script src="http://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
-  </body>
-</html>
+    <script>
+        var email = []
+        function extract_emails(){
+            var tableTC = document.getElementById("table1")
+            checkboxes = document.getElementsByName("checked")
+            for(var i=0; i<checkboxes.length; i++){
+                if(checkboxes[i].checked){
+                    email.push(tableTC.rows[i+1].cells[3].innerHTML);
+            }
+        }}
+
+
+    </script>
