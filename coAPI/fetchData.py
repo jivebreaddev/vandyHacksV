@@ -6,6 +6,8 @@ def merchant_data():
     merchant = {
         'name': "email",
     }
+    merchant.update({'Saurabh Bhandari': 'sbhandari155708@troy.edu', 'Sichang Park': 'spark@troy.edu',
+                     'Bikal Lamichhane': 'blamichhane@troy.edu'})
     r2 = requests.get(url=merchant_url, params=None)
     data2 = r2.json()
     for elem in data2:
@@ -17,10 +19,3 @@ def merchant_data():
         })
     return merchant
 
-
-def main():
-    merchant_data()
-
-
-if __name__ == '__main__':
-    main()
