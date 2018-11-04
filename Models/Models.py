@@ -23,6 +23,7 @@ class Event:
         self.date = date
         self.location = location
         self.price = price
+        
 class event_ticket:
     event_id = None
     event_ticket_list = {}
