@@ -5,3 +5,4 @@ venv
 
 .idea/workspace.xml
 __pycache__/app.cpython-36.pyc
+*.xml
