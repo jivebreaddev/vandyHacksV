@@ -12,7 +12,8 @@ def home():
 def signin():
     Form = request.form
     acc = db.retrieveAccount('Spark')
-    events = SP.dataloader(acc.oAuth).event_ticket_list
+    events = SP.dataloader(acc.oAuth).load_list()
+    events = list(set(events))
     if request.method == 'POST':
         auth = db.Authenticate(Form['username'], Form['password'])
         if auth:

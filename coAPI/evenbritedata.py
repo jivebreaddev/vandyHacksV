@@ -27,16 +27,16 @@ class dataloader:
             organization_check = self.eventbrite_api.get_organization_events(organization_id=organization_id)
 
             events = organization_check["events"]
-            print("this one")
-            print(events)
-            for event in events:
-                print(event)
-                self.event_ticket_list.append(event_ticket(event['id'],organizatino_id))
+        organization_id = id_organization[0]
+        for event in events:
+
+            self.event_ticket_list.append(event_ticket(event['id'],organization_id))
 
             self.load()
             self.algo_implementation_1 = algo(10, 5, self.event_ticket_list[0], self.eventbrite_api)
-            self.algo_implementation_2 = algo(10, 5, self.event_ticket_list[1], self.eventbrite_api)
-            self.algo_implementation_2.incremental_algo()
+
+            self.algo_implementation_1.incremental_algo()
+        print(len(events))
     # return events_list
 
 
@@ -47,9 +47,16 @@ class dataloader:
             print(event)
             event_ticket.event_details(event["name"], event["url"])
             event_ticket.event_time_load(datetime.now(),datetime.strptime(event["end"]["utc"],"%Y-%m-%dT%H:%M:%SZ"))
-
+    def load_list(self):
+        list_mark = self.event_ticket_list[:2]
+        return list_mark
     # def delete_tickets(self, event_id, ticket_class_id):
     #     self.eventbrite_api.delete_ticket_class(event_id,ticket_class_id)
+    def load_algo(self):
+        self.algo_implementation_1 = algo(10, 5, self.event_ticket_list[0], self.eventbrite_api)
+
+        self.algo_implementation_1.incremental_algo()
+
 
 def main():
     dataloader('TY4Y36NK4MF7365QHHGH')
