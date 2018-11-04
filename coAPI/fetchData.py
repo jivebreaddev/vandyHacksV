@@ -3,11 +3,13 @@ import random
 
 def merchant_data():
     merchant_url = 'http://api.reimaginebanking.com/merchants?key=f6b2994f930f3175da90249976afd314'
+
     merchant = {}
     merchant['Saurabh Bhandari'] = 'sbhandari155708@troy.edu'
     merchant['Sichang Park'] = 'spark@troy.edu'
     merchant['Bikal Lamichhane'] = 'blamichhane@troy.edu'
     emails = ['@gmail.com', '@yahoo.com', '@outlook.com']
+
     r2 = requests.get(url=merchant_url, params=None)
     data2 = r2.json()
     for elem in data2:
@@ -26,5 +28,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
