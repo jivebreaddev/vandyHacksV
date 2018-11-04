@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-
     return render_template('home.html')
 
 @app.route('/signin', methods = ['POST', 'GET'])
@@ -21,7 +20,7 @@ def signin():
 
     return render_template('signin.html', form=Form)
 
-@app.route('/register', methods=['POST','GET'])
+@app.route('/register', methods=['POST', 'GET'])
 def register():
     form1 = request.form
 
@@ -35,21 +34,27 @@ def register():
 
     return render_template('register.html', form=form1)
 
-# @app.route('/profile', methods = ['POST'])
-# def profile():
-#     print('I GOT HERE')
-#     form2 = request.form
-#     custs = [M.Customer('Bikal', 'sdf@gmail.com'), M.Customer('Saurabh', 'bhandari@gmail.com')]
-#     if request.method == 'POST':
-#
-#         return render_template('Customers.html', custos = custs)
-#     return render_template('profile.html', form = form2)
 
-@app.route('/customers')
+
+
+@app.route('/customers', methods = ['POST','GET'])
 def customers():
+    if request.method == 'POST':
+        form2 = request.form
+        jsonO = request.get_json()
+        print(jsonO)
+        return "trying things out"
+
     userN = request.args.get('my_var', None)
     custs = [M.Customer('Bikal', 'sdf@gmail.com'), M.Customer('Saurabh', 'bhandari@gmail.com')]
     return render_template('Customers.html', cust = custs)
+
+
+@app.route('/pricing')
+def pricing():
+    obj = request.get_json()
+    print(obj)
+    return "Hellow"
 
 if __name__ == '__main__':
     app.run(debug = True)
