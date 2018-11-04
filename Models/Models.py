@@ -17,3 +17,10 @@ class Customer:
         self.name = name
         self.email = email
 
+class Event:
+    def __init__(self, name, date, location, price):
+        self.name = name
+        self.date = date
+        self.location = location
+        self.price = price
+
