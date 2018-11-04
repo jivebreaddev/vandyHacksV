@@ -69,15 +69,17 @@
       <th scope="col"></th>
       <th scope="col">Name</th>
       <th scope="col">E-mail</th>
+        <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-   {% for i in cust %}
+   {% for key, value in cust.items() %}
   <tr>
       <td>{{ loop.index }}</td>
       <td><input type="checkbox" name="checked"></td>
-      <td>{{ i.name }}</td>
-      <td>{{ i.email }}</td>
+      <td>{{ key }}</td>
+      <td>{{ value }}</td>
+
   </tr>
   {% endfor %}
   </tbody>

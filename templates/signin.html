@@ -13,12 +13,18 @@
     <link href="http://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/static/css/signin.css" rel="stylesheet">
+      <style>
+          img:hover {
+        opacity: 1.0;
+        filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+      </style>
   </head>
 
   <body class="text-center" background="/static/images/b1.jpg">
   
   <form class="form-signin" method="POST">
-      
+      <img src = "/static/Images/EB.png" style="width:125px;height:125px;opacity: 0.8; " >
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Username</label>
       <input  name="username" class="form-control" placeholder="Username" required autofocus>

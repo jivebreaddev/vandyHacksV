@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+from datetime import datetime
 from platform import platform
 
 import requests
@@ -224,7 +226,13 @@ class Eventbrite(AccessMethodsMixin):
             sales_start_after = None,
             auto_hide = None,
             ):
-        data = {"ticket_class": {'name':name,"quantity_total":quantity_total,"cost":"USD,"+str(cost),"sales_start":sales_start,"sales_end":sales_end}}
+        data = {"ticket_class": {'name':name,"quantity_total":quantity_total,"cost":"USD,"+str(cost),"sales_start":{"timezone": "America/Los_Angeles",
+                    "utc": datetime.strptime(sales_start,"%Y-%m-%dT%H:%M:%SZ"),
+
+        },"sales_end":{"timezone": "America/Los_Angeles",
+                    "utc": datetime.strptime(sales_end,"%Y-%m-%dT%H:%M:%SZ"),
+
+        }}}
 
         return self.post("/events/{0}/ticket_classes/".format(event_id), data=data)
     def get_event(self,event_id):

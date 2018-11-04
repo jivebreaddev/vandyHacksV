@@ -2,6 +2,7 @@ from flask import Flask, render_template,request, jsonify
 import DAL.DBOps as db
 import Models.Models as M
 import coAPI.evenbritedata as SP
+import coAPI.fetchData as SB
 app = Flask(__name__)
 
 @app.route('/')
@@ -11,14 +12,18 @@ def home():
 @app.route('/signin', methods = ['POST', 'GET'])
 def signin():
     Form = request.form
-    acc = db.retrieveAccount('Spark')
-    events = SP.dataloader(acc.oAuth).load_list()
-    events = list(set(events))
+
+    # data.load_algo(5000,1000)
+
     if request.method == 'POST':
         auth = db.Authenticate(Form['username'], Form['password'])
         if auth:
             print('I am authenticated')
-            return render_template('profile.html', acc = db.retrieveAccount(Form['username']), event = events)
+            acc = db.retrieveAccount('Spark')
+            data = SP.dataloader(acc.oAuth)
+            events = data.load_list()
+            events = list(set(events))
+            return render_template('profile.html', acc = acc, event = events)
         else:
             return render_template('signin.html', Message="Invalid Username or Password. Try Again")
 
@@ -38,8 +43,13 @@ def register():
 
     return render_template('register.html', form=form1)
 
+@app.route('/profile', methods = ['POST', 'GET'])
+def profile():
+    form2 = request.form
 
-
+    if request.method == 'POST':
+        return render_template('pricing.html')
+    return render_template('profile.html', form = form2)
 
 @app.route('/customers')
 def customers():
@@ -50,7 +60,9 @@ def customers():
     #     return "trying things out"
 
     userN = request.args.get('my_var', None)
-    custs = [M.Customer('Bikal', 'sdf@gmail.com'), M.Customer('Saurabh', 'bhandari@gmail.com')]
+    custs = SB.merchant_data()
+    print(custs)
+    # [M.Customer('Bikal', 'sdf@gmail.com'), M.Customer('Saurabh', 'bhandari@gmail.com')]
     return render_template('Customers.html', cust = custs)
 
 

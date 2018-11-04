@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Account:
     def __init__(self, Fname, Lname, email, phone, username, password, oAuth):
         self.Fname = Fname
@@ -23,7 +26,7 @@ class Event:
         self.date = date
         self.location = location
         self.price = price
-        
+
 class event_ticket:
     event_id = None
     event_ticket_list = {}
@@ -41,7 +44,7 @@ class event_ticket:
     def event_time_load(self, start, end):
         self.event_start = start
         self.event_end = end
-        self.event_interval = (end- start)/5
+        self.event_interval = (end - start)/10
     def event_details(self,name, url):
         self.name = name['text']
         self.url = url
@@ -57,7 +60,7 @@ class algo:
         self.event_ticket = event_ticket
         self.api = api
     def add_ticket_class(self, event_id, start, end, price):
-        self.api.post_ticket_class(event_id)
+        self.api.post_ticket_class(event_id,name="jason", quantity_total= 10 ,cost= price, sales_start= start, sales_end=end)
     def add_time(self):
         self.event_ticket.event_start += self.event_ticket.event_interval
 

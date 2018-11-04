@@ -81,14 +81,15 @@
             <h2> {{ eve.name }}</h2>
 
             <p>
-                This is all the description for {{  eve.name }}. <br>
+
                 Start Date: {{ eve.event_start }}<br>
                 End Date: {{ eve.event_end }}<br>
                 URL: {{ eve.url }}
                 <br>
-
-
-                <button class="btn btn-outline-success my-2 my-sm-0"><a href="{{ url_for('customers', my_var = acc.username) }}">Customers</a></button>
+                <form method = 'POST'>
+              <input name="price">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Pricing</button>
+              </form>
             </p>
 
           </div>
@@ -100,7 +101,7 @@
     </main>
 
     <footer class="container">
-      <p>&copy; Company 2017-2018</p>
+      <p>&copy; EarlyBird 2018-2019</p>
     </footer>
 
     <!-- Bootstrap core JavaScript
