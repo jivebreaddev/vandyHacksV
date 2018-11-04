@@ -1,7 +1,7 @@
 import sqlalchemy
 import pyodbc
 import pandas as pd
-import Models.Account as M
+import Models.Models as M
 import urllib
 
 params = urllib.parse.quote("DRIVER={ODBC Driver 13 for SQL Server};SERVER=localhost\SQLEXPRESS;DATABASE=vandyhacksv;Trusted_Connection=yes")
@@ -23,7 +23,7 @@ def retrieveAccount(username):
     returnValue = M.Account(record['FName'][0], record['LName'][0],
                             record['email'][0], record['phone'][0],
                             record['UserName'][0], record['pword'][0],
-                            record['oAuth'][0]
+                            record['OAuth'][0]
                             )
     return returnValue
 

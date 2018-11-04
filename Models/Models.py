@@ -12,3 +12,8 @@ class Account:
         params = [self.Fname, self.Lname, self.email, self.phone, self.username, self.password, self.oAuth]
         return params
 
+class Customer:
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+

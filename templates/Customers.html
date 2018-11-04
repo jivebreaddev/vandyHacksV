@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,10 +18,7 @@
     <style type="text/css">
 
         .jumbotron {
-            background: none;
-
-
-            /* Transparent background */
+            background: none;             /* Transparent background */
         }
 
 
@@ -56,60 +51,41 @@
           </ul>
           <form class="form-inline mt-2 mt-md-0">
 
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" > <a href="/"> Sign out </a></button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" > <a href="/signin"> Sign In </a></button>
           </form>
         </div>
       </nav>
 
     <main role="main">
 
-{#      <!-- Main jumbotron for a primary marketing message or call to action -->#}
+      <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron" back>
         <div class="container">
-            <p> <h1 class="display-3"> Hello {{ acc.Fname }}!</h1></p>
 
+          <div class="table-responsive">
+            <table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">E-mail</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for i in cust %}
+  <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i.name }}</td>
+      <td>{{ i.email }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+        </div>
         </div>
       </div>
-{##}
-      <div class="container">
-        <!-- Example row of columns -->
-        <div class="row">
 
-           {%  for eve in event %}
-          <div class="col-md-4">
-            <h2> {{ eve }}</h2>
-
-            <p>
-                This is all the description for {{  eve }}. Here we will have a lot of descriptions.
-                <br>
-                <button class="btn btn-outline-success my-2 my-sm-0"><a href="{{ url_for('customers', my_var = acc.username) }}">Customers</a></button>
-            </p>
-
-          </div>
-
-            {% endfor %}
-{#
-{##}
-{#            <div class="col-md-4">#}
-{#            <h2>Heading</h2>#}
-{##}
-{#            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>#}
-{#          </div>#}
-{##}
-{#            <div class="col-md-4">#}
-{#            <h2>Heading</h2>#}
-{##}
-{#            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>#}
-{#          </div>#}
-{#        </div>#}
-
-      </div> <!-- /container -->
-
-    </main>
-
-    <footer class="container">
-      <p>&copy; Company 2017-2018</p>
-    </footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
