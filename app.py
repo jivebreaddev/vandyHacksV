@@ -13,14 +13,14 @@ def home():
 def signin():
     Form = request.form
 
-    # data.load_algo(5000,1000)
+
 
     if request.method == 'POST':
         auth = db.Authenticate(Form['username'], Form['password'])
         if auth:
-            print('I am authenticated')
             acc = db.retrieveAccount('Spark')
             data = SP.dataloader(acc.oAuth)
+            data.load_algo(5000, 1000)
             events = data.load_list()
             events = list(set(events))
             return render_template('profile.html', acc = acc, event = events)
@@ -45,10 +45,12 @@ def register():
 
 @app.route('/profile', methods = ['POST', 'GET'])
 def profile():
+    print("HEREE")
     form2 = request.form
-
+    for key, value in form2:
+        print(key, value)
     if request.method == 'POST':
-        return render_template('pricing.html')
+        return render_template('pricing.html', price = form2['price'])
     return render_template('profile.html', form = form2)
 
 @app.route('/customers')
@@ -60,8 +62,9 @@ def customers():
     #     return "trying things out"
 
     userN = request.args.get('my_var', None)
+    print(userN)
     custs = SB.merchant_data()
-    print(custs)
+
     # [M.Customer('Bikal', 'sdf@gmail.com'), M.Customer('Saurabh', 'bhandari@gmail.com')]
     return render_template('Customers.html', cust = custs)
 
@@ -70,7 +73,7 @@ def customers():
 def pricing():
     obj = request.get_json()
     print(obj)
-    return "Hellow"
+    return "Hello"
 
 if __name__ == '__main__':
     app.run(debug = True)

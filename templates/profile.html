@@ -68,14 +68,13 @@
       <div class="jumbotron" back>
         <div class="container">
             <p> <h1 class="display-3"> Hello {{ acc.Fname }} !</h1></p>
-
         </div>
       </div>
 
       <div class="container">
         <!-- Example row of columns -->
         <div class="row">
-
+            {{ if  }}
            {%  for eve in event %}
           <div class="col-md-4">
             <h2> {{ eve.name }}</h2>
@@ -87,9 +86,10 @@
                 URL: {{ eve.url }}
                 <br>
                 <form method = 'POST'>
-              <input name="price">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Pricing</button>
-              </form>
+
+              <button class="btn btn-outline-success my-2 my-sm-0"><a href="{{ url_for('customers', my_val = acc.username )}}">Send Customers</a> </button>
+
+{#                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Pricing </button>#}
             </p>
 
           </div>
@@ -111,5 +111,10 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="http://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
     <script src="http://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+  <script>
+      function cost() {
+          cost = document.getElementById("price");
+      }
+  </script>
   </body>
 </html>

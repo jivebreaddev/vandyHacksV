@@ -1,4 +1,9 @@
+import time
+import urllib
 from datetime import datetime
+import sendgrid
+from sendgrid import Email
+from sendgrid.helpers.mail import Content, Mail
 
 
 class Account:
@@ -66,8 +71,29 @@ class algo:
 
     def add_price(self):
         self.price += self.increment
+
     def send_mail(self, start, end, price, url):
-        pass
+
+        sg = sendgrid.SendGridAPIClient(apikey='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')
+        from_email = Email("sbhandari155708@troy.edu")
+        subject = "This is a test email."
+        to_email = Email("spark@troy.edu")
+        content = Content('text/html', 'text')
+        mail = Mail(from_email, subject, to_email, content)
+        name = "Sichang Park"
+        dynamic_template_data = {
+            'name': name, "price": price, "date": "Denver", "firstName": name, 'url': url
+        }
+        # unixtime = time.mktime(end.timetuple())
+        # mail.send_at = unixtime
+        mail.personalizations[0].dynamic_template_data = dynamic_template_data
+        mail.template_id = "d-c9c69c9a4d164310a1c5f3c289b9d93c"
+        try:
+            sg.client.mail.send.post(request_body=mail.get())
+        except:
+            pass
+
+
     def incremental_algo(self):
         for i in range(4):
             self.add_ticket_class(self.event_ticket.event_id, self.event_ticket.event_start,self.event_ticket.event_start+self.event_ticket.event_interval, self.price)
